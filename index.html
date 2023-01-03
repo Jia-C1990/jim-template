@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta content="yes" name="mobile-web-app-capable">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="robots" content="all">
+    <meta name="author" content="JIM-C3" />
+    <meta name="Copyright" content="Tencent" />
+    <meta name="Description" content="页面的描述内容" />
+    <meta name="Keywords" content="页面关键字" />
+    <title>vite</title>
+    <script>
+      (function() {
+          function refreshRem(type, desginWidth, setFontSize) {
+              var width, scale, viewport = document.querySelector('meta[name="viewport"]'), HtmlWidth = document.documentElement.clientWidth;
+              switch (type) {
+                  case "fixed":
+                      width = desginWidth,
+                      scale = HtmlWidth / desginWidth;
+                      break;
+                  case "rem":
+                      var Ratio = window.devicePixelRatio || 1;
+                      width = HtmlWidth * Ratio,
+                      scale = 1 / Ratio,
+                      document.documentElement.style.fontSize = 100 * (HtmlWidth * Ratio / desginWidth) + "px"
+              }
+              viewport.setAttribute("content", "width=" + width + ",initial-scale=" + scale + ",maximum-scale=" + scale + ",minimum-scale=" + scale + ",user-scalable=no"), 
+              setFontSize && window.addEventListener("DOMContentLoaded", function() {
+                  document.body.style.fontSize = 50 / scale + "px"
+              })
+          }
+          refreshRem("fixed",750,false);
+      })();       
+    </script>    
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/entry/vue.js"></script>
+    <script type="module" src="/src/entry/pixi.js"></script>
+  </body>
+</html>
